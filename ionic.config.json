@@ -1,0 +1,7 @@
+{
+  "name": "iot_project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
