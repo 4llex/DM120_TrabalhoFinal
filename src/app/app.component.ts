@@ -28,20 +28,21 @@ export class AppComponent implements OnInit {
       icon: 'sunny',
     },
     {
-      title: 'Umidade',
-      url: '/umidade',
-      icon: 'water',
-    },
-    {
       title: 'Color',
       url: '/color',
       icon: 'color-palette',
     },
     {
-      title: 'Buzzer',
+      title: 'Alarme',
       url: '/buzzer',
       icon: 'musical-notes',
+    },
+    {
+      title: 'Umidade',
+      url: '/umidade',
+      icon: 'water',
     }
+    
   ];
 
   constructor(
