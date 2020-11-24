@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons >
+    <ion-title>SmartHome</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <p style="text-align: center;">Monitoramento de parâmetros</p>
+  
+  <p style="text-align: center;">
+    <ion-card>
+      <ion-card-content style="text-align: center; fontsize: 2rem;" (click)="goToTempPage()">
+        <ion-icon name='thermometer' color="primary"></ion-icon>
+        Temperatura
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content style="text-align: center; fontsize: 2rem;" routerLink="/luminosidade">
+        <ion-icon name='sunny' color="secondary"></ion-icon>
+        Luminosidade
+      </ion-card-content>
+    </ion-card>
+
+  </p>
+</ion-content>

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TemperaturePageRoutingModule } from './temperature-routing.module';
+import { LuminosidadePageRoutingModule } from './luminosidade-routing.module';
 
-import { TemperaturePage } from './temperature.page';
+import { LuminosidadePage } from './luminosidade.page';
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
 
@@ -15,9 +15,9 @@ import * as highcharts from 'highcharts';
     CommonModule,
     FormsModule,
     IonicModule,
-    TemperaturePageRoutingModule,
+    LuminosidadePageRoutingModule,
     ChartModule.forRoot(highcharts)
   ],
-  declarations: [TemperaturePage]
+  declarations: [LuminosidadePage]
 })
-export class TemperaturePageModule {}
+export class LuminosidadePageModule {}

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-icon name="arrow-back" style="font-size: 2rem;" (click)="goBack()"></ion-icon>
     </ion-buttons>
-    <ion-title>Temperatura</ion-title>
+    <ion-title>Luminosidade</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
   <div *ngIf="!isLoading">
     <ion-card>
       <ion-card-content style="text-align: center; font-size: 5rem;">
-        {{ dweet._with[0].content.temperatura}} ºC
+        {{ dweet._with[0].content.luminosidade}} Lux
       </ion-card-content>
     </ion-card>
       

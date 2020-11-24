@@ -4,11 +4,11 @@ import { DweetService } from 'src/app/services/dweet.service';
 import Dweet from 'src/models/Dweet';
 
 @Component({
-  selector: 'app-temperature',
-  templateUrl: './temperature.page.html',
-  styleUrls: ['./temperature.page.scss'],
+  selector: 'app-luminosidade',
+  templateUrl: './luminosidade.page.html',
+  styleUrls: ['./luminosidade.page.scss'],
 })
-export class TemperaturePage implements OnInit {
+export class LuminosidadePage implements OnInit {
 
   private dweet: Dweet
   private isLoading: boolean = true;
@@ -28,7 +28,7 @@ export class TemperaturePage implements OnInit {
         this.preencherDweet(data)
       },
       err => {
-        console.log("Error: ", err)
+        console.log("Erro: ", err)
       },
       () => this.isLoading = false
     )
@@ -43,7 +43,7 @@ export class TemperaturePage implements OnInit {
   private loadDataForPlot(dweet: Dweet) {
     for (let _with of dweet.with) {
       let epoch = new Date(_with.created).getTime()
-      this.dataPlot.push([epoch, _with.content.$temperatura])
+      this.dataPlot.push([epoch, _with.content.$luminosidade])
     }
   }
 
@@ -55,13 +55,13 @@ export class TemperaturePage implements OnInit {
       yAxis: {
         labels: {
           formatter: function () {
-            return this.value + "ºC";
+            return this.value + "Lux";
           }
         },
       },
-      title: { text: 'Temperatura ' },
+      title: { text: 'Luminosidade ' },
       series: [{
-        name: 'temperatura',
+        name: 'Luminosidade',
         data: this.dataPlot.reverse(),
         pointInterval: 60 * 60
       }]
