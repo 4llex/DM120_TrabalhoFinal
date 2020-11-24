@@ -14,6 +14,8 @@ export class TemperaturePage implements OnInit {
   private isLoading: boolean = true;
   private time: any;
   private dataPlot: Array<any>
+  private dataMaxPlot: Array<any>
+  private dataMinPlot: Array<any>
   options: Object;
 
 
@@ -21,14 +23,17 @@ export class TemperaturePage implements OnInit {
     this.time = setInterval(() => { this.getLastDweets() }, 3000)
   }
 
+
   private getLastDweets() {
     this.dataPlot = []
+    this.dataMaxPlot = []
+    this.dataMinPlot = []
     this.dweetService.loadLastDweets().subscribe(
       data => {
         this.preencherDweet(data)
       },
       err => {
-        console.log("Error: ", err)
+        console.log("Erro: ", err)
       },
       () => this.isLoading = false
     )
@@ -44,10 +49,13 @@ export class TemperaturePage implements OnInit {
     for (let _with of dweet.with) {
       let epoch = new Date(_with.created).getTime()
       this.dataPlot.push([epoch, _with.content.$temperatura])
+      this.dataMaxPlot.push([epoch, _with.content.$tempMax])
+      this.dataMinPlot.push([epoch, _with.content.$tempMin])
     }
   }
 
   private plotChart() {
+
     this.options = {
       xAxis: {
         type: 'datetime'
@@ -64,20 +72,34 @@ export class TemperaturePage implements OnInit {
         name: 'temperatura',
         data: this.dataPlot.reverse(),
         pointInterval: 60 * 60
+      },
+      {
+        name: 'temperatura máxima',
+        data: this.dataMaxPlot.reverse(),
+        pointInterval: 60 * 60
+      },
+      {
+        name: 'temperatura minima',
+        data: this.dataMinPlot.reverse(),
+        pointInterval: 60 * 60
       }]
     };
+  }
+
+  goBack() {
+    this.router.navigate(['home'])
+  }
+
+  ngOnInit() {
+    this.getLastDweets();
   }
 
   ngOnDestroy() {
     clearInterval(this.time)
   }
 
-  goBack(){
-    this.router.navigate(['home'])
-  }
-
-  ngOnInit(){
-    this.getLastDweets();
+  ionViewDidLeave() {
+    clearInterval(this.time);
   }
 
 }

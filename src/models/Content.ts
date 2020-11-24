@@ -3,12 +3,15 @@ export default class Content {
     private temperatura: string = "0";
     private tempMax: string = "0";
     private tempMin: string = "0";
+
     private umidade: string = "0";
     private umidMax: string = "0";
     private umidMin: string = "0";
+
     private luminosidade: string = "0";
     private lumMax: string = "0";
     private lumMin: string = "0";
+
     private current_color: string = "0";
     private status_buzzer: string = "0";
 
@@ -18,12 +21,15 @@ export default class Content {
         this.temperatura = $temperature
         this.tempMax = $tempMax
         this.tempMin = $tempMin
+
         this.umidade = $umidade
         this.umidMax = $umidMax
         this.umidMin = $umidMin
+
         this.luminosidade = $luminosidade
         this.lumMax = $lumMax
         this.lumMin = $lumMin
+        
         this.current_color = $current_color
         this.status_buzzer = $status_buzzer
     }
