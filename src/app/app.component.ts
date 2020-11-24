@@ -25,12 +25,22 @@ export class AppComponent implements OnInit {
     {
       title: 'Luminosidade',
       url: '/luminosidade',
-      icon: 'sunny'
+      icon: 'sunny',
     },
     {
       title: 'Umidade',
       url: '/umidade',
-      icon: 'water'
+      icon: 'water',
+    },
+    {
+      title: 'Color',
+      url: '/color',
+      icon: 'color-palette',
+    },
+    {
+      title: 'Buzzer',
+      url: '/buzzer',
+      icon: 'musical-notes',
     }
   ];
 

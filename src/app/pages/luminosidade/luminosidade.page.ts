@@ -14,6 +14,8 @@ export class LuminosidadePage implements OnInit {
   private isLoading: boolean = true;
   private time: any;
   private dataPlot: Array<any>
+  private dataMaxPlot: Array<any>
+  private dataMinPlot: Array<any>
   options: Object;
 
 
@@ -21,8 +23,11 @@ export class LuminosidadePage implements OnInit {
     this.time = setInterval(() => { this.getLastDweets() }, 3000)
   }
 
+
   private getLastDweets() {
     this.dataPlot = []
+    this.dataMaxPlot = []
+    this.dataMinPlot = []
     this.dweetService.loadLastDweets().subscribe(
       data => {
         this.preencherDweet(data)
@@ -44,6 +49,8 @@ export class LuminosidadePage implements OnInit {
     for (let _with of dweet.with) {
       let epoch = new Date(_with.created).getTime()
       this.dataPlot.push([epoch, _with.content.$luminosidade])
+      this.dataMaxPlot.push([epoch, _with.content.$lumMax])
+      this.dataMinPlot.push([epoch, _with.content.$lumMin])
     }
   }
 
@@ -55,29 +62,43 @@ export class LuminosidadePage implements OnInit {
       yAxis: {
         labels: {
           formatter: function () {
-            return this.value + "Lux";
+            return this.value + "%";
           }
         },
       },
       title: { text: 'Luminosidade ' },
       series: [{
-        name: 'Luminosidade',
+        name: 'luminosidade',
         data: this.dataPlot.reverse(),
+        pointInterval: 60 * 60
+      },
+      {
+        name: 'luminosidade máxima',
+        data: this.dataMaxPlot.reverse(),
+        pointInterval: 60 * 60
+      },
+      {
+        name: 'luminosidade mínima',
+        data: this.dataMinPlot.reverse(),
         pointInterval: 60 * 60
       }]
     };
+  }
+
+  goBack() {
+    this.router.navigate(['home'])
+  }
+
+  ngOnInit() {
+    this.getLastDweets();
   }
 
   ngOnDestroy() {
     clearInterval(this.time)
   }
 
-  goBack(){
-    this.router.navigate(['home'])
-  }
-
-  ngOnInit(){
-    this.getLastDweets();
+  ionViewDidLeave() {
+    clearInterval(this.time);
   }
 
 }

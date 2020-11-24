@@ -16,7 +16,9 @@ export class DweetService {
   constructor(private http: HttpClient) { }
 
   loadLastDweets() {
+
     return this.http.get(this.dweetioApiUrl + this.thingName.toString())
+
   }
 
   private formatDate(date: any): string {
@@ -24,7 +26,7 @@ export class DweetService {
     var dateParse = originalDate.slice(0, 10)
     return dateParse
   }
-  
+
   private formatTime(date: any): string {
     let originalDate: string = date;
     var timeParse = originalDate.slice(11, 19)
@@ -40,7 +42,9 @@ export class DweetService {
 
     for (let _with of data.with) {
       let tempContent: Content
-      tempContent = new Content(_with.content.temperatura, _with.content.luminosidade, _with.content.umidade);
+      tempContent = new Content(_with.content.temperatura, _with.content.luminosidade, _with.content.tempMax,
+                                _with.content.tempMin, _with.content.umidade, _with.content.umidMax, _with.content.umidMin, 
+                                _with.content.lumMax, _with.content.lumMin, _with.content.current_color, _with.content.status_buzzer)
       _date = this.formatDate(_with.created)
       _time = this.formatTime(_with.created)
       let tempWith: With
@@ -49,10 +53,6 @@ export class DweetService {
     }
 
     dweet = new Dweet(data.this, data.by, data.the, _withs)
-    
     return dweet
   }
-
-
-
 }

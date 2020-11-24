@@ -2,36 +2,43 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons >
-    <ion-title>SmartHome</ion-title>
+    </ion-buttons>
+    <ion-title>Smart Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <p style="text-align: center;">Monitoramento de parâmetros</p>
-  
+  <p style="text-align: center;">Monitoramento de Parâmetros</p>
   <p style="text-align: center;">
     <ion-card>
-      <ion-card-content style="text-align: center; fontsize: 2rem;" (click)="goToTempPage()">
-        <ion-icon name='thermometer' color="primary"></ion-icon>
+      <ion-card-content style="text-align: center; font-size: 2rem;" (click)="goToTempPage()">
+        <ion-icon name='thermometer' color="secondary"></ion-icon>
         Temperatura
       </ion-card-content>
     </ion-card>
-
     <ion-card>
-      <ion-card-content style="text-align: center; fontsize: 2rem;" routerLink="/luminosidade">
+      <ion-card-content style="text-align: center; font-size: 2rem;" routerLink="/luminosidade">
         <ion-icon name='sunny' color="secondary"></ion-icon>
         Luminosidade
       </ion-card-content>
     </ion-card>
-
     <ion-card>
-      <ion-card-content style="text-align: center; fontsize: 2rem;" routerLink="/umidade">
+      <ion-card-content style="text-align: center; font-size: 2rem;" routerLink="/umidade">
         <ion-icon name='water' color="secondary"></ion-icon>
         Umidade
       </ion-card-content>
     </ion-card>
-
+    <ion-card>
+      <ion-card-content style="text-align: center; font-size: 2rem;" routerLink="/color">
+        <ion-icon name='color-palette' color="secondary"></ion-icon>
+        Cor
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content style="text-align: center; font-size: 2rem;" routerLink="/buzzer">
+        <ion-icon name='musical-notes' color="secondary"></ion-icon>
+        Alarme
+      </ion-card-content>
+    </ion-card>
   </p>
 </ion-content>

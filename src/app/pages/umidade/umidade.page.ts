@@ -14,6 +14,8 @@ export class UmidadePage implements OnInit {
   private isLoading: boolean = true;
   private time: any;
   private dataPlot: Array<any>
+  private dataMaxPlot: Array<any>
+  private dataMinPlot: Array<any>
   options: Object;
 
 
@@ -23,6 +25,9 @@ export class UmidadePage implements OnInit {
 
   private getLastDweets() {
     this.dataPlot = []
+    this.dataMaxPlot = []
+    this.dataMinPlot = []
+
     this.dweetService.loadLastDweets().subscribe(
       data => {
         this.preencherDweet(data)
@@ -44,6 +49,8 @@ export class UmidadePage implements OnInit {
     for (let _with of dweet.with) {
       let epoch = new Date(_with.created).getTime()
       this.dataPlot.push([epoch, _with.content.$umidade])
+      this.dataMaxPlot.push([epoch, _with.content.$umidMax])
+      this.dataMinPlot.push([epoch, _with.content.$umidMin])
     }
   }
 
@@ -63,6 +70,16 @@ export class UmidadePage implements OnInit {
       series: [{
         name: 'umidade',
         data: this.dataPlot.reverse(),
+        pointInterval: 60 * 60
+      },
+      {
+        name: 'umidade máxima',
+        data: this.dataMaxPlot.reverse(),
+        pointInterval: 60 * 60
+      },
+      {
+        name: 'umidade mínima',
+        data: this.dataMinPlot.reverse(),
         pointInterval: 60 * 60
       }]
     };
