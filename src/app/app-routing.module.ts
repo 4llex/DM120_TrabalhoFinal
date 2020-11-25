@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'color',
     loadChildren: () => import('./pages/color/color.module').then( m => m.ColorPageModule)
+  },
+  {
+    path: 'buzzer',
+    loadChildren: () => import('./pages/buzzer/buzzer.module').then( m => m.BuzzerPageModule)
   }
 ];
 
